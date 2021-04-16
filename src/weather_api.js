@@ -13,7 +13,7 @@ const processData = (json) => {
 };
 
 const getCityWeather = async (city, unit, appId) => {
-  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${appId}`, { mode: 'cors' });
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${appId}`, { mode: 'cors' });
   const json = await response.json();
   return processData(json);
 };

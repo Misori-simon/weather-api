@@ -28,7 +28,7 @@ The JS has the following structure
 
 ## Live Demo
 
-[Live Demo Link](https://misori-simon.github.io/restaurant_page/)
+[Live Demo Link](https://misori-simon.github.io/weather-api/)
 
 
 ## Getting Started
