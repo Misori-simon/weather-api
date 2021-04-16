@@ -1,6 +1,17 @@
 const container = document.getElementById('container');
 
-const displayResult = (result) => {
+const addUnit = (value, unit) => `${value}${unit}`;
+
+const displayErrorMessage = (cityName) => {
+  const resultContainer = document.getElementById('result');
+  resultContainer.innerHTML = '';
+  const city = document.createElement('h3');
+  city.classList.add('list-form');
+  resultContainer.appendChild(city);
+  city.textContent = `Sorry, data for ${cityName} is unavailable`;
+};
+
+const displayResult = (result, tempUnit) => {
   const resultContainer = document.getElementById('result');
   resultContainer.innerHTML = '';
   const city = document.createElement('h3');
@@ -8,43 +19,48 @@ const displayResult = (result) => {
   resultContainer.appendChild(city);
   city.textContent = result.city;
 
-  const temp = document.createElement('h3');
+  const temp = document.createElement('p');
   temp.classList.add('list-form');
   resultContainer.appendChild(temp);
-  temp.textContent = result.temp;
+  temp.innerHTML = addUnit(result.temp, `&#176;${tempUnit}`);
 
-  const tempRange = document.createElement('h3');
+  const tempRange = document.createElement('p');
   tempRange.classList.add('list-form');
   resultContainer.appendChild(tempRange);
-  tempRange.textContent = result.tempRange;
+  tempRange.innerHTML = addUnit(result.tempRange, `&#176;${tempUnit}`);
 
-  const pressure = document.createElement('h3');
+  const pressure = document.createElement('p');
   pressure.classList.add('list-form');
   resultContainer.appendChild(pressure);
-  pressure.textContent = result.pressure;
+  pressure.textContent = addUnit(result.pressure, 'hPa');
 
-  const humidity = document.createElement('h3');
+  const humidity = document.createElement('p');
   humidity.classList.add('list-form');
   resultContainer.appendChild(humidity);
-  humidity.textContent = result.humidity;
+  humidity.textContent = addUnit(result.humidity, '%');
 
-  const cloudState = document.createElement('h3');
+  const cloudState = document.createElement('p');
   cloudState.classList.add('list-form');
   resultContainer.appendChild(cloudState);
   cloudState.textContent = result.cloudState;
 
-  const cloudStateDesc = document.createElement('h3');
+  const cloudStateDesc = document.createElement('p');
   cloudStateDesc.classList.add('list-form');
   resultContainer.appendChild(cloudStateDesc);
   cloudStateDesc.textContent = result.cloudStateDesc;
 
-  const cloudStateIcon = document.createElement('h3');
+  const cloudStateIcon = document.createElement('img');
   cloudStateIcon.classList.add('list-form');
+  cloudStateIcon.src = `http://openweathermap.org/img/wn/${result.cloudStateIcon}@2x.png`;
   resultContainer.appendChild(cloudStateIcon);
-  cloudStateIcon.textContent = result.cloudStateIcon;
+};
+
+const clearForm = (field) => {
+  field.value = '';
 };
 
 const createForm = (fn, appId) => {
+  let unit = '';
   const formContainer = document.createElement('div');
   container.appendChild(formContainer);
   formContainer.classList.add('form-container');
@@ -81,17 +97,24 @@ const createForm = (fn, appId) => {
 
   const tempUnit = () => {
     if (tempCelcius.checked) {
+      unit = 'C';
       return tempCelcius.value;
-    } return tempKelvin.value;
+    }
+    unit = 'K';
+    return tempKelvin.value;
   };
 
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.textContent = 'check forecast';
   btn.addEventListener('click', async () => {
-    console.log(tempUnit());
-    const result = await fn(city.value, tempUnit(), appId);
-    displayResult(result);
+    try {
+      const result = await fn(city.value, tempUnit(), appId);
+      displayResult(result, unit);
+    } catch (error) {
+      displayErrorMessage(city.value);
+    }
+    clearForm(city);
   });
   form.appendChild(btn);
 };
