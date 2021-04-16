@@ -12,8 +12,8 @@ const processData = (json) => {
   return results;
 };
 
-const getCityWeather = async (city, unit) => {
-  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=f2526aabeeb777ad3fbb777842b7c51e`, { mode: 'cors' });
+const getCityWeather = async (city, unit, appId) => {
+  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${appId}`, { mode: 'cors' });
   const json = await response.json();
   return processData(json);
 };
