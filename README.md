@@ -10,9 +10,13 @@ A website to check the weather forecast of any city.
 
 This project is about the use of API's in Javascript. Also to evaluate the use of ```async/await``` and ```promises```.
 
-![screenshot](./images/sc1.png)
+![screenshot](./screenshots/sc.png)
 -
-![screenshot](./images/sc.png)
+![screenshot](./screenshots/sc1.png)
+-
+![screenshot](./screenshots/sc2.png)
+-
+![screenshot](./screenshots/sc3.png)
 
 The DOM Elements are build mainly from JS:
 The JS has the following structure
