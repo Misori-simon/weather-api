@@ -4,7 +4,7 @@
 
 ## Definition
 
-A website to check the weather forecast of any city.
+A weather app that pulls from the OpenWeatherMap API to allow users to search for and view the forecast in cities worldwide. Built with JavaScript
 
 ## About the Project
 
