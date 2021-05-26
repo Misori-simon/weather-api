@@ -8,7 +8,7 @@ A weather app that pulls from the OpenWeatherMap API to allow users to search fo
 
 ## About the Project
 
-This project is about the use of API's in Javascript. Also to evaluate the use of ```async/await``` and ```promises```.
+This project is about the use of API's in JavaScript. Also to evaluate the use of ```async/await``` and ```promises```.
 
 ![screenshot](./screenshots/sc.png)
 -
@@ -28,7 +28,7 @@ The JS has the following structure
 
 - HTML5
 - CSS3
-- Javascript
+- JavaScript
 
 ## Live Demo
 
